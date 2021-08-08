@@ -1,0 +1,159 @@
+// @import 'color.scss';
+// @import 'variable.scss';
+
+$color-grey: #858585;
+$color-grey6: #e5e7e9;
+$green-stepper-background: #57ca6d;
+$color-blue: #0067B1;
+
+.stepper-container{
+    width: 70%;
+    margin: auto;
+}
+
+ul.steper-steps {
+    $line_height: 30px;
+    $padding: 9px;
+    $arrow_size: ($line_height + 2 * $padding)/2;
+    $max_li: 10;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    line-height: $line_height;
+    counter-reset: li;
+    font-family: Lato;
+    font-size: 12px;
+    font-stretch: normal;
+    font-style: normal;
+
+    li {
+        list-style-image: none;
+        list-style-type: none;
+        margin-left: 0;
+        text-align: left;
+        color: #ffffff;
+        position: relative;
+        margin-left: 30px;
+
+        &.stepper-flex {
+            width: 16%;
+            display: flex;
+            justify-content: center;
+
+            .completed {
+                color: $color-grey;
+                font-size: 16px;
+                &:before {
+                    content: "✔";
+                    display: flex;
+                    width: 31px;
+                    height: 31px;
+                    justify-content: center;
+                    align-items: center;
+                    counter-increment: li;
+                    background: $green-stepper-background;
+                    border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    color:white;
+                    z-index: 1;
+                }
+
+                &:after{
+                    content: "";
+                    position: absolute;
+                    left:60px;
+                    top: 22px;
+                    width: 120%;
+                    height: 1px;
+                    background-color: $color-blue;
+                }
+            }
+        }
+
+        span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: $padding ($padding + $arrow_size) $padding $padding;
+            color: $color-grey;
+            font-size: 16px;
+
+            &:before {
+                content: counter(li);
+                counter-increment: li;
+                display: flex;
+                width: 25px;
+                height: 25px;
+                border: solid $color-grey6 1px;
+                background: #ffffff;
+                border-radius: 50%;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                color: $color-grey6;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 15px;
+                z-index: 1;
+            }
+            &:after{
+                content: "";
+                position: absolute;
+                left:60px;
+                top: 22px;
+                width: 120%;
+                height: 1px;
+                background-color: $color-grey6;
+            }
+            
+        }
+
+        &:last-child{
+            span{
+                &:after{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &>li {
+        float: left;
+    }
+
+    li.current {
+        span {
+            color: $color-blue;
+            font-weight: 700;
+            font-size: 16px;
+
+            &:before {
+                display: flex;
+                width: 31px;
+                height: 31px;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                border: solid $color-blue 1px;
+                border-radius: 50%;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                color:$color-blue;
+                font-weight: 700;
+            }
+        }
+    }
+
+    // For the overlapping to work, later LIs must have a lower z-index.
+    @for $i from 1 through $max_li {
+        li.step#{$i} {
+            z-index: $max_li - $i;
+        }
+    }
+
+    .clickable{
+        cursor: pointer;
+    }
+}

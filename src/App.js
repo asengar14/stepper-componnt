@@ -1,23 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import StepperComponent from "./StepperComponent";
 
 function App() {
+  const FIVE_STEPPER_STEPS = [
+            { label: "Initiation", progress: "COMPLETED", //INCOMPLETE / CURRENT / COMPLETED
+            },
+            { label: "Preview", progress: "COMPLETED"},
+            { label: "Score", progress: "CURRENT"},
+            { label: "Entitlement", progress: "INCOMPLETE"},
+            { label: "Results", progress: "INCOMPLETE"},
+        ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StepperComponent steps={FIVE_STEPPER_STEPS} />
     </div>
   );
 }
