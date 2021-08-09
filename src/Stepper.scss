@@ -1,6 +1,3 @@
-// @import 'color.scss';
-// @import 'variable.scss';
-
 $color-grey: #858585;
 $color-grey6: #e5e7e9;
 $green-stepper-background: #57ca6d;
@@ -76,7 +73,7 @@ ul.steper-steps {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: $padding ($padding + $arrow_size) $padding $padding;
+             padding: $padding ($padding + $arrow_size) $padding $padding;
             color: $color-grey;
             font-size: 16px;
 
@@ -144,16 +141,5 @@ ul.steper-steps {
                 font-weight: 700;
             }
         }
-    }
-
-    // For the overlapping to work, later LIs must have a lower z-index.
-    @for $i from 1 through $max_li {
-        li.step#{$i} {
-            z-index: $max_li - $i;
-        }
-    }
-
-    .clickable{
-        cursor: pointer;
     }
 }
